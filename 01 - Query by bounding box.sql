@@ -6,7 +6,7 @@
 
 -- COMMAND ----------
 
--- MAGIC %run "./include/setup" $rebuildAll=False
+-- MAGIC %run "./include/setup" $rebuildAll=False $UC=True
 
 -- COMMAND ----------
 
@@ -68,3 +68,7 @@ SELECT
   *
 FROM 
   filter_trips("POLYGON ((-75.083 39.618,-75.083 40.829,-73.871 40.829,-73.871 39.618,-75.083 39.618))")
+
+-- COMMAND ----------
+
+

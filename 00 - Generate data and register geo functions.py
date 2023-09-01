@@ -14,7 +14,7 @@
 
 # COMMAND ----------
 
-# MAGIC %run ./include/setup $rebuildAll=False
+# MAGIC %run ./include/setup $rebuildAll=True $UC=True
 
 # COMMAND ----------
 
@@ -47,3 +47,7 @@ if not "h3_resolutions" in existing_tables:
 # COMMAND ----------
 
 # MAGIC %run "./include/table_functions"
+
+# COMMAND ----------
+
+

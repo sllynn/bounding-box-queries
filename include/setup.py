@@ -12,14 +12,16 @@ schema_name = "geo_perf"
 
 # COMMAND ----------
 
-spark.sql(f"create catalog if not exists {user_name}")
-spark.sql(f"use catalog {user_name}")
+
+if dbutils.widgets.get("UC") == "True":
+  spark.sql(f"create catalog if not exists {user_name}")
+  spark.sql(f"use catalog {user_name}")
 
 # COMMAND ----------
 
 if dbutils.widgets.get("rebuildAll") == "True":
   print("Rebuilding datasets")
-  spark.sql(f"drop schema {schema_name} cascade")
+  spark.sql(f"drop schema if exists {schema_name} cascade")
 
 # COMMAND ----------
 

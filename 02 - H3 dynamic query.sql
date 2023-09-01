@@ -10,7 +10,7 @@
 
 -- COMMAND ----------
 
--- MAGIC %run "./include/setup" $rebuildAll=False
+-- MAGIC %run "./include/setup" $rebuildAll=False $UC=True
 
 -- COMMAND ----------
 
@@ -46,11 +46,6 @@
 
 -- COMMAND ----------
 
-OPTIMIZE nyctaxi_yellow_idxd 
-ZORDER BY (h3_15)
-
--- COMMAND ----------
-
 -- MAGIC %md ### Step 2: Execute joins that depend on the size of the input bounding box
 -- MAGIC
 -- MAGIC When it comes to query execution time, we select the resolution to use in the join based on the size of the incoming bounding box by using the function `best_h3()`.
@@ -60,6 +55,11 @@ ZORDER BY (h3_15)
 -- COMMAND ----------
 
 SELECT best_h3("POLYGON ((-73.983 40.718,-73.983 40.729,-73.971 40.729,-73.971 40.718,-73.983 40.718))")
+
+-- COMMAND ----------
+
+OPTIMIZE nyctaxi_yellow_idxd 
+ZORDER BY (h3_12)
 
 -- COMMAND ----------
 
@@ -111,7 +111,7 @@ RETURN
 -- Important:
 -- update the first of these statements with the name of your catalog
 
-USE CATALOG firstName_lastName;
+USE CATALOG firstname_lastname;
 USE SCHEMA geo_perf;
 
 -- COMMAND ----------
@@ -137,3 +137,7 @@ SELECT
   *
 FROM 
   filter_trips_h3("POLYGON ((-75.083 39.618,-75.083 40.829,-73.871 40.829,-73.871 39.618,-75.083 39.618))")
+
+-- COMMAND ----------
+
+
